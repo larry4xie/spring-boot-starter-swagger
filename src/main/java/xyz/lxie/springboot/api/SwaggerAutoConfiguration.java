@@ -1,4 +1,4 @@
-package my.springboot.api;
+package xyz.lxie.springboot.api;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.google.common.base.Predicate;

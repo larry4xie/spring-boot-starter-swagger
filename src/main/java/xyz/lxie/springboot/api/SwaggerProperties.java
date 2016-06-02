@@ -1,4 +1,4 @@
-package my.springboot.api;
+package xyz.lxie.springboot.api;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
