@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.schema.AlternateTypeRule;
@@ -65,8 +66,15 @@ public class SwaggerAutoConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean
     public Docket api() {
-        ApiInfo apiInfo = new ApiInfo(props.getTitle(), props.getDescription(), props.getVersion(), props.getTermsOfServiceUrl(),
-                new Contact(props.getContact(), "", ""), props.getLicense(), props.getLicenseUrl());
+        ApiInfo apiInfo = new ApiInfoBuilder()
+                .title(props.getTitle())
+                .description(props.getDescription())
+                .version(props.getVersion())
+                .termsOfServiceUrl(props.getTermsOfServiceUrl())
+                .contact(new Contact(props.getContact(), "", ""))
+                .license(props.getLicense())
+                .licenseUrl(props.getLicenseUrl())
+                .build();
 
         AlternateTypeRule alternateTypeRule = newRule(
                 typeResolver.resolve(DeferredResult.class,
